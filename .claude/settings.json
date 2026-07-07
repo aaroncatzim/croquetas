@@ -15,7 +15,18 @@
       "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan remote add origin https://github.com/aaroncatzim/croquetas.git)",
       "Bash(git ls-remote *)",
       "Bash(git config *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m 'Mascotlan POS: punto de venta de escritorio \\(Electron\\) con inventario, ventas por día, reversión, panel con datos reales, fotos de producto y Supabase opcional *)",
+      "Bash(git push *)",
+      "Bash(env -u ELECTRON_RUN_AS_NODE MASCOTLAN_DATA_DIR=/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/smoke-v5 npx electron . --smoke)",
+      "Bash(gh repo *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://api.github.com/repos/aaroncatzim/croquetas)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan diff .claude/settings.json)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan log --oneline -5)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan remote -v)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan add -A)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Divide app.js en módulos js/ por tema y prepara el sitio para GitHub Pages *)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan push origin main)"
     ]
   }
 }

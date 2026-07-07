@@ -8,9 +8,11 @@ empaquetado como app de escritorio para macOS con Electron.
 - **App de escritorio**: abre `dist/Mascotlan POS-darwin-arm64/Mascotlan POS.app`
   (puedes arrastrarla a Aplicaciones). Para regenerarla: `npm run dist`.
 - **Navegador**: abre `index.html` directamente — sin servidor ni instalación.
+- **Web (GitHub Pages)**: <https://aaroncatzim.github.io/croquetas/> — los datos
+  se guardan en el navegador; el catálogo se sincroniza vía Supabase.
 - **Desarrollo**: `npm start` lanza la app de escritorio sin empaquetar.
 
-Verificación automática del flujo completo (24 pruebas):
+Verificación automática del flujo completo (36 pruebas):
 `index.html?smoke=1` en el navegador, o `npm run smoke` en Electron.
 
 ## Dónde se guardan los datos
@@ -67,7 +69,29 @@ sincroniza en la nube (varias cajas comparten inventario):
 Sin conexión la app sigue funcionando con el catálogo local y avisa con un
 banner. Las ventas del día siempre se guardan en los archivos locales.
 
+## Estructura del código
+
+El código vive en `js/`, un módulo por tema (se cargan en orden desde
+`index.html`, sin build):
+
+| Archivo | Contenido |
+|---|---|
+| `js/config.js` | configuración, categorías (`CATS`) y catálogo inicial |
+| `js/helpers.js` | fechas, formato de dinero, cálculos del carrito, imágenes |
+| `js/state.js` | el objeto `state` con todo el estado de la app |
+| `js/icons.js` | iconos SVG |
+| `js/supabase.js` | cliente de Supabase (login y catálogo) |
+| `js/store.js` | guardado en archivos / localStorage y sincronización |
+| `js/views.js` | HTML de cada pantalla y modal |
+| `js/actions.js` | lógica de negocio: cobrar, revertir, productos, login |
+| `js/main.js` | render, eventos globales y arranque |
+| `js/smoke.js` | auto-prueba del flujo completo |
+
+`electron-main.js` y `preload.js` son el proceso principal de Electron
+(ventana + lectura/escritura de archivos).
+
 ## Configuración rápida
 
-`app.js` → `CONFIG`: nombre de la marca, pantalla inicial, umbral de stock
-bajo y fondo de caja para el corte (`cashFund`).
+`js/config.js` → `CONFIG`: nombre de la marca, pantalla inicial, umbral de
+stock bajo y fondo de caja para el corte (`cashFund`). Las categorías de
+producto se editan en el mismo archivo (`CATS`).
