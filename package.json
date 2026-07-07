@@ -1,0 +1,18 @@
+{
+  "name": "mascotlan-pos",
+  "productName": "Mascotlan POS",
+  "version": "1.0.0",
+  "description": "Punto de venta para tienda de mascotas",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron . --smoke",
+    "dist": "electron-packager . 'Mascotlan POS' --platform=darwin --arch=arm64 --icon=build/icon.icns --overwrite --out=dist --ignore='^/dist$' --ignore='^/build$' --ignore='^/data$' --ignore='^/test-np\\.html$' --ignore='^/README\\.md$' --ignore='^/supabase-schema\\.sql$'"
+  },
+  "author": "Aarón Catzim",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron/packager": "^20.0.2",
+    "electron": "^43.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+# dependencias y builds
+node_modules/
+dist/
+
+# datos locales de la app (inventario y ventas de desarrollo)
+data/
+
+# sistema
+.DS_Store
+*.log

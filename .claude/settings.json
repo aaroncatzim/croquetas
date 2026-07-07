@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(env -u ELECTRON_RUN_AS_NODE MASCOTLAN_DATA_DIR=\"/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/smoke-v2\" \"/Users/aaroncatzim/Documents/mascotitlan/dist/Mascotlan POS-darwin-arm64/Mascotlan POS.app/Contents/MacOS/Mascotlan POS\" --smoke)",
+      "Bash(env -u ELECTRON_RUN_AS_NODE MASCOTLAN_DATA_DIR=\"/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/smoke-v3\" \"/Users/aaroncatzim/Documents/mascotitlan/dist/Mascotlan POS-darwin-arm64/Mascotlan POS.app/Contents/MacOS/Mascotlan POS\" --smoke)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' https://qlxgbmbscnbocfxnplni.supabase.co/auth/v1/health -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseGdibWJzY25ib2NmeG5wbG5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTE4MTIsImV4cCI6MjA5ODk2NzgxMn0.mayNQgSkPNysujmAT1Qz5bYZS95NhXvxwD6XOxL7mBs')",
+      "Bash(curl -s -w '\\\\nhttp:%{http_code}\\\\n' 'https://qlxgbmbscnbocfxnplni.supabase.co/rest/v1/productos?select=id&limit=1' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseGdibWJzY25ib2NmeG5wbG5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTE4MTIsImV4cCI6MjA5ODk2NzgxMn0.mayNQgSkPNysujmAT1Qz5bYZS95NhXvxwD6XOxL7mBs')",
+      "Bash(curl -s -w '\\\\nhttp:%{http_code}\\\\n' 'https://qlxgbmbscnbocfxnplni.supabase.co/rest/v1/perfiles?select=rol&limit=1' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseGdibWJzY25ib2NmeG5wbG5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTE4MTIsImV4cCI6MjA5ODk2NzgxMn0.mayNQgSkPNysujmAT1Qz5bYZS95NhXvxwD6XOxL7mBs')",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-first-run --virtual-time-budget=8000 --dump-dom \"file:///Users/aaroncatzim/Documents/mascotitlan/test-login.html\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-first-run --virtual-time-budget=12000 --dump-dom \"file:///Users/aaroncatzim/Documents/mascotitlan/index.html?smoke=1\")",
+      "Bash(curl -s -w \"\\\\nhttp:%{http_code}\" \"https://qlxgbmbscnbocfxnplni.supabase.co/rest/v1/productos?select=imagen&limit=1\" -H \"apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseGdibWJzY25ib2NmeG5wbG5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTE4MTIsImV4cCI6MjA5ODk2NzgxMn0.mayNQgSkPNysujmAT1Qz5bYZS95NhXvxwD6XOxL7mBs\")",
+      "Bash(env -u ELECTRON_RUN_AS_NODE MASCOTLAN_DATA_DIR=\"/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/smoke-v4\" \"/Users/aaroncatzim/Documents/mascotitlan/dist/Mascotlan POS-darwin-arm64/Mascotlan POS.app/Contents/MacOS/Mascotlan POS\" --smoke)",
+      "Bash(git init *)",
+      "Bash(gh auth *)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan remote add origin https://github.com/aaroncatzim/croquetas.git)",
+      "Bash(git ls-remote *)",
+      "Bash(git config *)",
+      "Bash(git add *)"
+    ]
+  }
+}

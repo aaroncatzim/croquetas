@@ -1,0 +1,6 @@
+1 la opcion de nuevo producto no funciona 
+2 la informacion de los productos debe almacenarse en un archivo en la carpeta de la aplicacion
+3 la informacion de las ventas debe almacenar en un archivo. se crea un archivo nuevo por dia.
+4 agrega una opcion para poder revertir la compra
+5 conecta el dashboard con la aplicaicon para que los datos sea correctos
+6 quiero que se conecte a supabase para poder hacer el login asi como almacenar la informacion de los productos a la venta 
