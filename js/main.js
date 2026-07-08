@@ -143,6 +143,7 @@ async function init() {
       if (Array.isArray(products) && products.length) state.products = products;
       else Promise.resolve(Store.saveProducts(state.products)).catch(() => {}); // primer arranque: se crea el archivo
       if (meta && typeof meta.folioSeq === 'number') state.folioSeq = meta.folioSeq;
+      if (meta && meta.contacto && typeof meta.contacto === 'object') state.contact = { ...emptyContact(), ...meta.contacto };
       if (Array.isArray(sales)) state.sales = sales;
       if (week && typeof week === 'object') state.week = week;
     } catch (_) { /* datos corruptos → se usan los de fábrica */ }
@@ -151,6 +152,12 @@ async function init() {
     try { state.dataPath = await FS.dataPath(); } catch (_) { /* opcional */ }
   }
   render();
+  // el contacto publicado en Supabase es la versión más reciente (se lee sin sesión)
+  if (SB) {
+    SB.fetchNegocio()
+      .then(n => { if (n) { state.contact = { ...emptyContact(), ...n }; render(); } })
+      .catch(() => { /* tabla aún no creada o sin conexión */ });
+  }
   if (SMOKE) runSmoke();
 }
 

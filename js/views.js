@@ -495,6 +495,38 @@ function renderDashboard() {
           <h3>Productos más vendidos hoy</h3>
           ${tops || '<div class="t-empty">Todavía no hay ventas hoy.</div>'}
         </div>
+        <div class="card top-card">
+          <div class="card-head">
+            <h3>Página pública del catálogo</h3>
+            <span class="card-note">Contacto que ven tus clientes en catalogo.html</span>
+          </div>
+          <div class="contact-grid">
+            <div class="field">
+              <label>WhatsApp</label>
+              <input data-input="contact.whatsapp" data-key="c_wa" inputmode="tel"
+                     value="${esc(state.contact.whatsapp)}" placeholder="10 dígitos, ej. 5512345678">
+            </div>
+            <div class="field">
+              <label>Teléfono</label>
+              <input data-input="contact.telefono" data-key="c_tel" inputmode="tel"
+                     value="${esc(state.contact.telefono)}" placeholder="10 dígitos">
+            </div>
+            <div class="field">
+              <label>Facebook</label>
+              <input data-input="contact.facebook" data-key="c_fb"
+                     value="${esc(state.contact.facebook)}" placeholder="usuario o enlace de tu página">
+            </div>
+            <div class="field">
+              <label>Instagram</label>
+              <input data-input="contact.instagram" data-key="c_ig"
+                     value="${esc(state.contact.instagram)}" placeholder="@usuario o enlace">
+            </div>
+          </div>
+          <div class="contact-foot">
+            ${state.contactMsg ? `<span class="contact-msg">${esc(state.contactMsg)}</span>` : '<span class="hint">Deja vacío lo que no quieras mostrar.</span>'}
+            <button class="btn-primary" data-action="contact-save">Guardar contacto</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>`;

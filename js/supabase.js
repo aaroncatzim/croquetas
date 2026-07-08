@@ -70,6 +70,39 @@ function makeSupabase(cfg) {
       if (!r.ok) r = await send(rows(false));
       if (!r.ok) throw new Error('No se pudo sincronizar el catálogo con Supabase.');
     },
+    /* Catálogo público (vista "catalogo"): legible sin iniciar sesión. */
+    async fetchCatalogo() {
+      const r = await fetch(base + '/rest/v1/catalogo?select=*&order=nombre', { headers: headers() });
+      if (!r.ok) throw new Error('No se pudo leer el catálogo.');
+      return (await r.json()).map(row => ({
+        id: String(row.id),
+        name: row.nombre,
+        cat: CATS[row.categoria] ? row.categoria : 'Alimento',
+        price: Number(row.precio),
+        unit: row.unidad === 'kg' ? 'kg' : 'pza',
+        img: row.imagen || '',
+        disponible: row.disponible !== false,
+      }));
+    },
+    /* Contacto del negocio (tabla "negocio"): lectura pública, escritura con sesión. */
+    async fetchNegocio() {
+      const r = await fetch(base + '/rest/v1/negocio?id=eq.1&select=facebook,instagram,whatsapp,telefono', { headers: headers() });
+      if (!r.ok) throw new Error('No se pudo leer el contacto.');
+      return (await r.json())[0] || null;
+    },
+    async saveNegocio(c) {
+      const r = await fetch(base + '/rest/v1/negocio', {
+        method: 'POST',
+        headers: headers({ Prefer: 'resolution=merge-duplicates' }),
+        body: JSON.stringify([{
+          id: 1,
+          facebook: c.facebook, instagram: c.instagram,
+          whatsapp: c.whatsapp, telefono: c.telefono,
+          actualizado: new Date().toISOString(),
+        }]),
+      });
+      if (!r.ok) throw new Error('No se pudo guardar el contacto en Supabase.');
+    },
     async deleteProduct(id) {
       const r = await fetch(base + '/rest/v1/productos?id=eq.' + encodeURIComponent(id), {
         method: 'DELETE',

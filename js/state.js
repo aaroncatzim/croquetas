@@ -9,6 +9,10 @@ function emptyNp() {
   return { name: '', cat: 'Alimento', price: '', unit: 'pza', barcode: '', stock: '', img: '' };
 }
 
+function emptyContact() {
+  return { facebook: '', instagram: '', whatsapp: '', telefono: '' };
+}
+
 const state = {
   screen: CONFIG.startScreen,
   role: 'dueno',
@@ -30,6 +34,8 @@ const state = {
   confirmRevert: null,            // folio de la venta a revertir (modal de confirmación)
   confirmDelete: null,            // id del producto a borrar (modal de confirmación)
   login: { email: '', password: '', error: '', busy: false },
+  contact: emptyContact(),        // contacto del negocio (página pública de catálogo)
+  contactMsg: '',                 // resultado al guardar el contacto
   syncMsg: '',                    // aviso de sincronización con Supabase
   dataPath: '',                   // carpeta de datos (solo escritorio)
   _focus: null,                   // data-key a enfocar tras el próximo render

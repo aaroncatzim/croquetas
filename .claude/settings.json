@@ -40,7 +40,10 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --window-size=500,740 --virtual-time-budget=8000 --screenshot=/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/cat-todo.png file:///Users/aaroncatzim/Documents/mascotitlan/_mobile-preview.html)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --window-size=500,740 --virtual-time-budget=8000 --screenshot=/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/cat-juguetes.png 'file:///Users/aaroncatzim/Documents/mascotitlan/_mobile-preview.html#cat')",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --virtual-time-budget=15000 --dump-dom file:///Users/aaroncatzim/Documents/mascotitlan/index.html?smoke=1)",
-      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Móvil: las categorías del catálogo se eligen con un dropdown nativo *)"
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Móvil: las categorías del catálogo se eligen con un dropdown nativo *)",
+      "Bash(env -u ELECTRON_RUN_AS_NODE MASCOTLAN_DATA_DIR=/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/smoke-c npx electron . --smoke)",
+      "Bash(echo \"electron smoke exit=$?\")",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Página pública de catálogo con contacto del negocio editable en el Panel *)"
     ]
   }
 }

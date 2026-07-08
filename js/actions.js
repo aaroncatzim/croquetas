@@ -287,11 +287,16 @@ const actions = {
   'revert-ask':     arg => { state.confirmRevert = arg; },
   'revert-cancel':  () => { state.confirmRevert = null; },
   'revert-confirm': () => { revertSale(state.confirmRevert); state.confirmRevert = null; },
+  'contact-save': () => {
+    Object.keys(state.contact).forEach(k => { state.contact[k] = String(state.contact[k]).trim(); });
+    persistContact();
+  },
 };
 
 /* Escribe el valor de un input (data-input) en el estado. */
 function setField(field, value) {
   if (field.startsWith('np.')) { state.np[field.slice(3)] = value; state.npError = ''; }
   else if (field.startsWith('login.')) { state.login[field.slice(6)] = value; state.login.error = ''; }
+  else if (field.startsWith('contact.')) { state.contact[field.slice(8)] = value; state.contactMsg = ''; }
   else state[field] = value;
 }

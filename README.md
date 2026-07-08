@@ -10,9 +10,14 @@ empaquetado como app de escritorio para macOS con Electron.
 - **Navegador**: abre `index.html` directamente — sin servidor ni instalación.
 - **Web (GitHub Pages)**: <https://aaroncatzim.github.io/croquetas/> — los datos
   se guardan en el navegador; el catálogo se sincroniza vía Supabase.
+- **Catálogo público para clientes**:
+  <https://aaroncatzim.github.io/croquetas/catalogo.html> — sin login; muestra
+  los productos y los botones de contacto (WhatsApp, teléfono, Facebook e
+  Instagram). El contacto se edita en el **Panel del dueño** y los productos
+  salen de Supabase, así que siempre está actualizado.
 - **Desarrollo**: `npm start` lanza la app de escritorio sin empaquetar.
 
-Verificación automática del flujo completo (36 pruebas):
+Verificación automática del flujo completo (38 pruebas):
 `index.html?smoke=1` en el navegador, o `npm run smoke` en Electron.
 
 ## Dónde se guardan los datos
@@ -23,7 +28,7 @@ En la app de escritorio todo se guarda en archivos JSON:
 |---|---|
 | `productos.json` | catálogo e inventario |
 | `ventas/ventas-AAAA-MM-DD.json` | ventas del día — **un archivo nuevo por día** |
-| `config.json` | folio consecutivo |
+| `config.json` | folio consecutivo y contacto del negocio |
 | `supabase.json` | conexión opcional a Supabase |
 
 Carpeta de datos: `~/Documents/Mascotlan POS` (app empaquetada) o `data/` en el
@@ -49,7 +54,12 @@ ventas por día).
   descuenta del corte (queda marcada como revertida, no se borra).
 - **Panel del dueño** — todo con **datos reales**: KPIs del día, comparación
   contra ayer, gráfica de los últimos 7 días (leída de los archivos de
-  ventas), corte de caja y productos más vendidos de hoy.
+  ventas), corte de caja y productos más vendidos de hoy. También se editan
+  ahí los **datos de contacto** que muestra el catálogo público.
+- **Catálogo público** (`catalogo.html`) — página para clientes, sin login:
+  productos con foto, precio y disponibilidad (vista `catalogo` de Supabase,
+  sin stock exacto ni códigos), búsqueda, filtro por categoría y botones de
+  contacto del negocio (tabla `negocio`).
 - **Ticket** — recibo al cobrar, envío por WhatsApp y descarga en PDF.
 
 ## Supabase (opcional)
@@ -85,6 +95,7 @@ El código vive en `js/`, un módulo por tema (se cargan en orden desde
 | `js/views.js` | HTML de cada pantalla y modal |
 | `js/actions.js` | lógica de negocio: cobrar, revertir, productos, login |
 | `js/main.js` | render, eventos globales y arranque |
+| `js/catalogo.js` | página pública de catálogo (`catalogo.html`) |
 | `js/smoke.js` | auto-prueba del flujo completo |
 
 `electron-main.js` y `preload.js` son el proceso principal de Electron

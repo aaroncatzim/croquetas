@@ -56,6 +56,51 @@ create policy "usuarios borran productos"
   using (true);
 
 -- ============================================================
+-- Página pública de catálogo (catalogo.html)
+-- Esta sección es idempotente: se puede ejecutar sola si las
+-- tablas de arriba ya existían.
+-- ============================================================
+
+-- Datos de contacto del negocio (los edita el dueño en el Panel).
+create table if not exists public.negocio (
+  id          int primary key default 1 check (id = 1),
+  facebook    text not null default '',
+  instagram   text not null default '',
+  whatsapp    text not null default '',
+  telefono    text not null default '',
+  actualizado timestamptz default now()
+);
+
+alter table public.negocio enable row level security;
+
+drop policy if exists "cualquiera lee el contacto" on public.negocio;
+create policy "cualquiera lee el contacto"
+  on public.negocio for select
+  to anon, authenticated
+  using (true);
+
+drop policy if exists "usuarios crean el contacto" on public.negocio;
+create policy "usuarios crean el contacto"
+  on public.negocio for insert
+  to authenticated
+  with check (true);
+
+drop policy if exists "usuarios actualizan el contacto" on public.negocio;
+create policy "usuarios actualizan el contacto"
+  on public.negocio for update
+  to authenticated
+  using (true);
+
+-- Vista pública del catálogo: solo lo que puede ver un cliente
+-- (sin stock exacto ni código de barras).
+create or replace view public.catalogo as
+  select id, nombre, categoria, precio, unidad, imagen,
+         stock > 0 as disponible
+  from public.productos;
+
+grant select on public.catalogo to anon, authenticated;
+
+-- ============================================================
 -- Después de ejecutar esto:
 --
 -- 1. Crea los usuarios en Authentication → Users → Add user

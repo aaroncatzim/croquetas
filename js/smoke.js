@@ -46,6 +46,14 @@ async function runSmoke() {
     check('KPIs reales (1 ticket)', stats1.count === 1 && Math.abs(stats1.total - total) < 1e-9);
     check('top de productos con datos reales', document.querySelectorAll('.top-row').length === 2);
 
+    // contacto de la página pública de catálogo (editable en el panel)
+    check('panel: campos de contacto del catálogo', !!document.querySelector('[data-input="contact.whatsapp"]'));
+    setField('contact.whatsapp', '5512345678');
+    setField('contact.instagram', '@mascotlan');
+    actions['contact-save'](); render();
+    check('contacto guardado', state.contact.whatsapp === '5512345678'
+      && state.contact.instagram === '@mascotlan' && !!state.contactMsg);
+
     // nuevo producto (flujo completo con validación)
     actions['nav']('inventory'); render();
     check('pantalla inventario', state.screen === 'inventory' && document.querySelector('.table') != null);

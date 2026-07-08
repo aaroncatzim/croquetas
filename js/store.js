@@ -28,9 +28,9 @@ const Store = FS ? {
   saveProducts: async p => lsWrite(STORAGE_KEY, { ...(lsRead(STORAGE_KEY) || {}), products: p }),
   loadMeta: async () => {
     const d = lsRead(STORAGE_KEY);
-    return d && typeof d.folioSeq === 'number' ? { folioSeq: d.folioSeq } : null;
+    return d ? { folioSeq: d.folioSeq, contacto: d.contacto } : null;
   },
-  saveMeta: async m => lsWrite(STORAGE_KEY, { ...(lsRead(STORAGE_KEY) || {}), folioSeq: m.folioSeq }),
+  saveMeta: async m => lsWrite(STORAGE_KEY, { ...(lsRead(STORAGE_KEY) || {}), folioSeq: m.folioSeq, contacto: m.contacto }),
   loadSales: async k => lsRead(STORAGE_KEY + ':ventas:' + k) || [],
   saveSales: async (k, s) => lsWrite(STORAGE_KEY + ':ventas:' + k, s),
   loadWeek: async keys => {
@@ -67,7 +67,21 @@ function persistSales() {
 }
 function persistMeta() {
   if (!PERSIST) return;
-  Promise.resolve(Store.saveMeta({ folioSeq: state.folioSeq })).catch(() => {});
+  Promise.resolve(Store.saveMeta({ folioSeq: state.folioSeq, contacto: state.contact })).catch(() => {});
+}
+
+/* Contacto del negocio: se guarda local y se publica en Supabase para
+   que la página pública de catálogo (catalogo.html) lo muestre. */
+function persistContact() {
+  persistMeta();
+  if (SB && SB.hasSession()) {
+    state.contactMsg = 'Guardando…';
+    SB.saveNegocio(state.contact)
+      .then(() => { state.contactMsg = 'Guardado — la página del catálogo ya muestra los nuevos datos.'; render(); })
+      .catch(() => { state.contactMsg = 'Guardado en esta caja, pero sin conexión con Supabase: la página pública no se actualizó.'; render(); });
+  } else {
+    state.contactMsg = 'Guardado en esta caja.';
+  }
 }
 
 /* Cambio de día: las ventas de hoy pasan al histórico de la semana. */

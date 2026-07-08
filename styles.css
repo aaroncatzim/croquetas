@@ -513,3 +513,35 @@ h1,h2,h3{margin:0;font-family:var(--baloo);font-weight:700;color:var(--ink)}
 .btn-min{display:inline-flex;align-items:center;padding:9px 14px;border:1.5px solid var(--line-3);border-radius:11px;font-weight:800;font-size:12.5px;color:var(--muted);cursor:pointer;background:#fff}
 .btn-min:hover{border-color:var(--orange-2);color:var(--orange);background:var(--orange-soft)}
 .btn-min.danger:hover{border-color:var(--danger);color:var(--danger);background:#FBE9E7}
+
+/* ---------- panel: contacto de la página pública ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.contact-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:4px}
+.contact-msg{font-weight:700;font-size:12.5px;color:var(--teal-ink)}
+
+/* ============================================================
+   Página pública de catálogo (catalogo.html)
+   ============================================================ */
+.cat-page{max-width:1120px;margin:0 auto;padding:30px 24px 40px}
+.cat-hero{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:28px}
+.c-contact{display:flex;gap:9px;flex-wrap:wrap}
+a.c-link{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;background:#fff;border:1.5px solid var(--line-2);font-weight:800;font-size:13px;color:var(--muted);text-decoration:none;transition:transform .1s,box-shadow .16s}
+a.c-link:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(153,90,40,.12)}
+a.c-link.wa{color:#1EA34A;border-color:#C8E8D0}
+a.c-link.tel{color:var(--teal-ink);border-color:#CDE7E0}
+a.c-link.fb{color:#1877F2;border-color:#CFE0F8}
+a.c-link.ig{color:#C13584;border-color:#F0D3E4}
+.cat-page .catalog-head{margin-bottom:16px}
+.cat-page .prod-card{cursor:default}
+.prod-card.is-out .prod-name,.prod-card.is-out .prod-bottom,.prod-card.is-out .avatar{opacity:.5}
+.cat-error{padding:50px 20px;text-align:center;font-weight:700;font-size:14px;color:var(--muted)}
+.cat-foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line-4);text-align:center;font-weight:600;font-size:12.5px;color:var(--muted-2)}
+
+@media (max-width:820px){
+  .contact-grid{grid-template-columns:1fr}
+  .contact-foot .btn-primary{width:100%;justify-content:center}
+  .cat-page{padding:20px 14px 30px}
+  .cat-hero{flex-direction:column;text-align:center;margin-bottom:20px}
+  .c-contact{justify-content:center}
+  .cat-page .catalog-title h1{font-size:20px}
+}
