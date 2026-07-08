@@ -118,7 +118,7 @@ function renderRail() {
       ${nav('pos', I.cart(21), 'Cobrar')}
       ${nav('inventory', I.box(), 'Inventario')}
       ${nav('sales', I.receipt(), 'Ventas')}
-      ${isDueno ? nav('dashboard', I.chart(), 'Panel del dueño') : ''}
+      ${isDueno ? nav('dashboard', I.chart(), '<span class="lbl-lg">Panel del dueño</span><span class="lbl-sm">Panel</span>') : ''}
     </nav>
     <div class="rail-foot">
       <div class="pill-open"><span class="dot"></span><span>Caja abierta</span></div>

@@ -20,6 +20,7 @@ function render() {
   }
   const scrolls = {};
   app.querySelectorAll('[data-scroll]').forEach(el => { scrolls[el.dataset.scroll] = el.scrollTop; });
+  const winX = window.scrollX, winY = window.scrollY; // en móvil el scroll es de la página
 
   // qué elementos animados ya estaban en pantalla: al recrearlos no deben
   // repetir su animación de entrada (parpadeo al escribir)
@@ -38,6 +39,7 @@ function render() {
     const el = app.querySelector(`[data-scroll="${k}"]`);
     if (el) el.scrollTop = scrolls[k];
   });
+  window.scrollTo(winX, winY);
 
   if (state._focus) {
     const el = app.querySelector(`[data-key="${state._focus}"]`);
