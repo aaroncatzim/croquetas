@@ -37,6 +37,13 @@ async function runSmoke() {
     check('stock a granel descontado', Math.abs(findProduct('a1').stock - (a1Before - 0.5)) < 1e-9);
     check('venta registrada en el día', state.sales.length === 1 && state.sales[0].status === 'ok');
 
+    // copiar ticket y enlace al catálogo público
+    render();
+    check('botón de copiar ticket', !!document.querySelector('[data-action="copy-ticket"]'));
+    const txt = ticketText(state.ticket, false);
+    check('texto del ticket listo para pegar', txt.includes(state.ticket.folio) && txt.includes('Total:') && txt.includes('Cambio:'));
+    check('enlace al catálogo para clientes', !CONFIG.catalogUrl || !!document.querySelector('a.nav-btn[target="_blank"]'));
+
     closeTicket(); render();
 
     // dashboard con datos reales
@@ -125,7 +132,7 @@ async function runSmoke() {
 
     actions['logout']();
     actions['login-cajero'](); render();
-    check('cajero sin panel del dueño', document.querySelectorAll('.nav-btn').length === 3);
+    check('cajero sin panel del dueño', document.querySelectorAll('button.nav-btn').length === 3);
     actions['nav']('dashboard'); render();
     check('cajero no puede navegar al panel', state.screen === 'pos');
     actions['nav']('inventory'); render();

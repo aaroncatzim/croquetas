@@ -17,7 +17,7 @@ empaquetado como app de escritorio para macOS con Electron.
   salen de Supabase, así que siempre está actualizado.
 - **Desarrollo**: `npm start` lanza la app de escritorio sin empaquetar.
 
-Verificación automática del flujo completo (38 pruebas):
+Verificación automática del flujo completo (41 pruebas):
 `index.html?smoke=1` en el navegador, o `npm run smoke` en Electron.
 
 ## Dónde se guardan los datos

@@ -23,6 +23,7 @@ const state = {
   weightId: null, weightVal: '0.500',
   tendered: '', contado: '',
   ticket: null, phone: '', waSent: false,
+  copied: false,                  // el ticket ya se copió al portapapeles
   folioSeq: 138,
   sales: [],                      // ventas de HOY (con estado 'ok' | 'cancelada')
   salesDate: todayKey(),

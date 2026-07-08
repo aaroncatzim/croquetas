@@ -48,7 +48,9 @@
       "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Schema: la sección del catálogo público agrega la columna imagen si falta *)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --window-size=1280,2100 --virtual-time-budget=8000 --screenshot=/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/link-card.png file:///Users/aaroncatzim/Documents/mascotitlan/_pos-preview.html)",
       "Bash(/usr/bin/python3 -c ' *)",
-      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Panel: enlace a la página pública del catálogo \\(CONFIG.catalogUrl\\) *)"
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Panel: enlace a la página pública del catálogo \\(CONFIG.catalogUrl\\) *)",
+      "Bash(env -u ELECTRON_RUN_AS_NODE MASCOTLAN_DATA_DIR=/private/tmp/claude-501/-Users-aaroncatzim-Documents-mascotitlan/d7c81769-1b15-4bd4-9432-14893f1de27f/scratchpad/smoke-t npx electron . --smoke)",
+      "Bash(git -C /Users/aaroncatzim/Documents/mascotitlan commit -m 'Enlace al catálogo para clientes en la navegación y botón de copiar ticket *)"
     ]
   }
 }

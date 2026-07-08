@@ -119,6 +119,10 @@ function renderRail() {
       ${nav('inventory', I.box(), 'Inventario')}
       ${nav('sales', I.receipt(), 'Ventas')}
       ${isDueno ? nav('dashboard', I.chart(), '<span class="lbl-lg">Panel del dueño</span><span class="lbl-sm">Panel</span>') : ''}
+      ${CONFIG.catalogUrl ? `
+      <a class="nav-btn" href="${esc(CONFIG.catalogUrl)}" target="_blank" rel="noopener" title="Abrir la página que ven tus clientes">
+        ${I.ext()}<span class="lbl-lg">Catálogo para clientes</span><span class="lbl-sm">Catálogo</span>
+      </a>` : ''}
     </nav>
     <div class="rail-foot">
       <div class="pill-open"><span class="dot"></span><span>Caja abierta</span></div>
@@ -611,6 +615,7 @@ function renderTicketModal() {
           <button class="btn-wa${state.waSent ? ' sent' : ''}" data-action="send-whatsapp">${I.wa()}${state.waSent ? 'Reenviar por WhatsApp' : 'Enviar por WhatsApp'}</button>
           ${state.waSent ? '<div class="wa-note">✓ WhatsApp Web abierto con el ticket adjunto</div>' : ''}
         </div>
+        <button class="btn-outline" data-action="copy-ticket">${I.copy()}${state.copied ? 'Ticket copiado ✓' : 'Copiar ticket'}</button>
         <button class="btn-outline" data-action="download-pdf">${I.download()}Descargar PDF</button>
         <button class="link-new" data-action="ticket-close">Nueva venta →</button>
       </div>

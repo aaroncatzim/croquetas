@@ -70,6 +70,7 @@ function charge() {
   state.tendered = '';
   state.phone = '';
   state.waSent = false;
+  state.copied = false;
 
   persistSales();
   persistProducts();
@@ -93,14 +94,15 @@ function revertSale(folio) {
 function closeTicket() {
   state.ticket = null;
   state.waSent = false;
+  state.copied = false;
 }
 
-function sendWhatsApp() {
-  const tk = state.ticket;
-  if (!tk) return;
+/* Texto del ticket (para WhatsApp o para copiar y pegar). */
+function ticketText(tk, paraWhatsApp) {
+  const marca = paraWhatsApp ? `*${CONFIG.brandName}*` : CONFIG.brandName;
   const rows = tk.lines.map(l => `${qtyLabel(l)} · ${l.name} — ${m(l.lineTotal)}`).join('\n');
-  const text = [
-    `🐾 *${CONFIG.brandName}* · Ticket ${tk.folio}`,
+  return [
+    `🐾 ${marca} · Ticket ${tk.folio}`,
     tk.dateLabel,
     '——————————————',
     rows,
@@ -110,6 +112,12 @@ function sendWhatsApp() {
     `Cambio: ${m(tk.change)}`,
     '¡Gracias por consentir a tu mascota! 🐾',
   ].join('\n');
+}
+
+function sendWhatsApp() {
+  const tk = state.ticket;
+  if (!tk) return;
+  const text = ticketText(tk, true);
   let digits = state.phone.replace(/\D/g, '');
   if (digits.length === 10) digits = '52' + digits; // 10 dígitos MX → lada internacional
   const url = digits
@@ -117,6 +125,31 @@ function sendWhatsApp() {
     : `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank', 'noopener');
   state.waSent = true;
+}
+
+/* Copia el ticket al portapapeles para pegarlo donde sea. */
+function copyTicket() {
+  const tk = state.ticket;
+  if (!tk) return;
+  const text = ticketText(tk, false);
+  const listo = ok => { state.copied = ok; render(); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => listo(true)).catch(() => listo(copyFallback(text)));
+  } else {
+    listo(copyFallback(text));
+  }
+}
+function copyFallback(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (_) { /* sin portapapeles */ }
+  ta.remove();
+  return ok;
 }
 
 function saveNewProduct() {
@@ -267,6 +300,7 @@ const actions = {
   },
   'ticket-close':  () => closeTicket(),
   'send-whatsapp': () => sendWhatsApp(),
+  'copy-ticket':   () => copyTicket(),
   'download-pdf':  () => { window.print(); },
   'np-open':   () => { state.showNewProduct = true; state.editId = null; state.np = emptyNp(); state.npError = ''; state._focus = 'np_name'; },
   'np-cancel': () => { state.showNewProduct = false; state.editId = null; state.npError = ''; },
