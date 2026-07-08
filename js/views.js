@@ -498,7 +498,9 @@ function renderDashboard() {
         <div class="card top-card">
           <div class="card-head">
             <h3>Página pública del catálogo</h3>
-            <span class="card-note">Contacto que ven tus clientes en catalogo.html</span>
+            ${CONFIG.catalogUrl
+              ? `<a class="card-link" href="${esc(CONFIG.catalogUrl)}" target="_blank" rel="noopener">${esc(CONFIG.catalogUrl.replace(/^https?:\/\//, ''))} ${I.arrow()}</a>`
+              : '<span class="card-note">Contacto que ven tus clientes en catalogo.html</span>'}
           </div>
           <div class="contact-grid">
             <div class="field">

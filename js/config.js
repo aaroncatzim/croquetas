@@ -11,6 +11,8 @@ const CONFIG = {
   startScreen: 'login',          // 'login' | 'pos' | 'inventory' | 'sales' | 'dashboard'
   lowStockThreshold: 10,
   cashFund: 260,                 // fondo inicial de caja para el corte
+  // dirección pública del catálogo (se muestra como enlace en el Panel)
+  catalogUrl: 'https://aaroncatzim.github.io/croquetas/catalogo.html',
 };
 const STORAGE_KEY = 'mascotlan-pos-v1';
 const SMOKE = /[?&]smoke=1/.test(location.search); // auto-prueba: index.html?smoke=1
