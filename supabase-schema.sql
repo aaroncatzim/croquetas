@@ -93,6 +93,7 @@ create policy "usuarios actualizan el contacto"
 
 -- Vista pública del catálogo: solo lo que puede ver un cliente
 -- (sin stock exacto ni código de barras).
+alter table public.productos add column if not exists imagen text;
 create or replace view public.catalogo as
   select id, nombre, categoria, precio, unidad, imagen,
          stock > 0 as disponible
