@@ -145,6 +145,10 @@ function renderCatalog() {
     return `<button class="chip${state.cat === name ? ' active' : ''}" style="--c:${cc.c};--s:${cc.s}" data-action="set-cat" data-arg="${name}">${name}</button>`;
   }).join('');
 
+  // en móvil las categorías se eligen con un dropdown (los chips se ocultan por CSS)
+  const catOptions = ['Todo', ...Object.keys(CATS)].map(name =>
+    `<option value="${name}"${state.cat === name ? ' selected' : ''}>${name === 'Todo' ? 'Todas las categorías' : name}</option>`).join('');
+
   const cards = visibleProducts().map(p => {
     const cc = catOf(p.cat);
     return `
@@ -174,6 +178,10 @@ function renderCatalog() {
       </div>
     </div>
     <div class="chips">${chips}</div>
+    <div class="cat-select">
+      <select data-input="cat" data-key="cat" aria-label="Categoría">${catOptions}</select>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B4A48F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
     <div class="grid-wrap" data-scroll="catalog">
       <div class="prod-grid">${cards}</div>
       ${cards ? '' : '<div class="no-results">Sin resultados para tu búsqueda.</div>'}
